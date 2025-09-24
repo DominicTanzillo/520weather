@@ -1,0 +1,22 @@
+## Documentation https://dev.meteostat.net/bulk/#quick-start
+
+# Define station ID
+station=72306
+
+# Loop through 2015–2024 (full years)
+for year in $(seq 2015 2024); do
+  echo "Downloading $year..."
+  curl -s "https://data.meteostat.net/hourly/${year}/${station}.csv.gz" \
+    --output "${station}-${year}.csv.gz"
+  gunzip -f "${station}-${year}.csv.gz"
+done
+
+# Handle 2025 separately (cut at August)
+echo "Downloading 2025..."
+curl -s "https://data.meteostat.net/hourly/2025/${station}.csv.gz" \
+  --output "${station}-2025.csv.gz"
+gunzip -f "${station}-2025.csv.gz"
+
+# Keep only Jan–Aug 2025
+awk -F, 'NR==1 || $1 ~ /^2025-(0[1-8])/' "${station}-2025.csv" \
+  > "${station}-2025-jan-aug.csv"
