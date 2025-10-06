@@ -93,7 +93,7 @@ def clean_data(df):
 
     return df
 
-cleaned_df = clean_data(df)
+# cleaned_df = clean_data(df)
 
-print("\nPreview of cleaned data:")
-print(cleaned_df.head())
+# print("\nPreview of cleaned data:")
+# print(cleaned_df.head())

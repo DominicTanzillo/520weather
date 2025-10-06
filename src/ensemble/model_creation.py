@@ -1,6 +1,5 @@
 from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor, VotingRegressor
 from sklearn.svm import SVR
-from sklearn.metrics import mean_squared_error
 import pandas as pd
 import numpy as np
 
