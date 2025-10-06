@@ -62,10 +62,4 @@ def run_pipeline(weather_filename="Data_Cleaned/cleaned_weather.csv",
     # Predictions for the forecast window
     y_pred = model.predict(X_test)
 
-    if y_test is not None and not y_test.empty:
-        rmse = np.sqrt(mean_squared_error(y_test, y_pred))
-        print(f"Ensemble RMSE (forecast window): {rmse:.3f}")
-    else:
-        print("No actual y_test values available — returning predictions only.")
-
     return X_train, y_train, X_test, y_test, model, y_pred
