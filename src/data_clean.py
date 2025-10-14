@@ -24,15 +24,13 @@ def load_all_weather_data(folder_path="Data_Raw"):
     print(f"Columns found: {list(combined.columns)}")
     return combined
 
-
 df = load_all_weather_data("Data_Raw")
-
 
 def clean_data(df):
     """Clean dataset: build datetime, drop cldc, interpolate prcp/wdir, clip outliers."""
 
     df = df.copy()
-    print("\n---- Cleaning Data ----")
+    print("---- Cleaning Data ----")
 
     # Step 1: Ensure datetime column exists
     if "datetime" in df.columns:
@@ -68,7 +66,7 @@ def clean_data(df):
             nulls_before = df[col].isna().sum()
             df[col] = df[col].interpolate(method="nearest", limit_direction="both")
             nulls_after = df[col].isna().sum()
-            print(f"Interpolated '{col}': {nulls_before} → {nulls_after} missing values.")
+            print("Interpolated '{col}': {nulls_before} → {nulls_after} missing values.")
 
     # Drop rows with missing datetime or temp
     df = df.dropna(subset=["datetime", "temp"])
@@ -82,14 +80,14 @@ def clean_data(df):
             lower, upper = df[col].quantile(0.01), df[col].quantile(0.99)
             df[col] = df[col].clip(lower, upper)
 
-    print(f"Cleaned dataset has {len(df)} rows and {len(df.columns)} columns.")
+    print("Cleaned dataset has {len(df)} rows and {len(df.columns)} columns.")
     print("-----------------------")
 
     # Final sanity check: drop any row that still has NaN
     before = len(df)
     df = df.dropna()
     after = len(df)
-    print(f"Sanity check: dropped {before - after} rows with remaining NaN values.")
+    print("Sanity check: dropped {before - after} rows with remaining NaN values.")
 
     return df
 
