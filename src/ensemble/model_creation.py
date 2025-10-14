@@ -2,6 +2,10 @@ from sklearn.ensemble import RandomForestRegressor, GradientBoostingRegressor, V
 from sklearn.svm import SVR
 import pandas as pd
 import numpy as np
+import os
+import joblib
+
+
 
 def split_data_by_date(df, target="temp", forecast_start="2025-09-17", forecast_end="2025-09-30"):
     """
@@ -87,6 +91,8 @@ def run_pipeline(weather_filename="Data_Cleaned/cleaned_weather.csv",
     """
     Train on all data before forecast_start, then predict for forecast window.
     """
+    output_folder = "Nonlinear_Forecast_Final"
+
     df = pd.read_csv(weather_filename, parse_dates=["datetime"])
     df = df.sort_values("datetime")
 
@@ -100,6 +106,12 @@ def run_pipeline(weather_filename="Data_Cleaned/cleaned_weather.csv",
     model = build_ensemble()
     print("Fitting ensemble...")
     model.fit(X_train, y_train)
+
+    model_path = os.path.join(output_folder, "trained_model.joblib")
+    X_test_path = os.path.join(output_folder, "X_test.csv")
+
+    joblib.dump(model, model_path) ## In case runtime error and do not want to wait another 28 minutes.
+    X_test.to_csv(X_test_path, index=False)
 
     # Predictions for the forecast window
     y_pred = model.predict(X_test)
