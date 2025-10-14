@@ -22,3 +22,8 @@ Gradient Boosting also makes trees, but rather than having a series of unique tr
 Support Vector Regression attempts to generate a smooth function that has all of the errors within a tolerance. For the space around our function there are different “kernels” possible. This means essentially to determine where our data fits, we can have functions of different dimensions finding space between our points. If we use the radial basis function, it measures distance without assuming dimensions (it can be functionally infinite). This means we have a smooth and non-linear function. It compliments our tree models by emphasizing low-bias and high-variance for a relatively over-fitted function.
 
 Taken in aggregate we have the average of three non-linear models making our final ensemble non-linear.
+
+
+References
+
+1. S. Wadhwa and R. Tiwari, “Machine Learning-based Weather Prediction: A Comparative Study of Regression and Classification Algorithms,” in 2023 International Conference in Advances in Power, Signal, and Information Technology (APSIT), Jun. 2023, pp. 1-6. Doi: 10.1109/APSIT58554.2023.10201679.
