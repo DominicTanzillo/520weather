@@ -24,7 +24,7 @@ def split_data_by_date(df, target="temp", forecast_start="2025-09-17", forecast_
     y_train = train_df[target]
 
     X_test = test_df.drop(columns=[target, "datetime"], errors="ignore")
-    y_test = test_df[target] if target in test_df else None  # allow forecasting without labels
+    y_test = test_df[target] if target in test_df else None
 
     return X_train, y_train, X_test, y_test
 
