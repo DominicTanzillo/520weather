@@ -1,0 +1,32 @@
+Linear Regression Model - Weather Prediction
+============================================================
+
+Cross-Validation (5-fold):
+  Average MSE:  0.713
+  Average RMSE: 0.844 °C
+  Average MAE:  0.623 °C
+  Average R²:   0.991
+
+Final Validation Performance:
+  MSE:  13.103
+  RMSE: 3.620 °C
+  MAE:  2.881 °C
+  R²:   0.319
+
+Feature Coefficients:
+              Feature  Coefficient
+ temp_rolling_mean_6h     1.809641
+          temp_lag_3h    -0.974953
+             hour_sin    -0.425371
+          temp_lag_1h     0.382356
+             hour_cos    -0.332068
+          temp_lag_6h    -0.299705
+              day_cos    -0.127540
+  temp_rolling_std_6h     0.090064
+temp_rolling_mean_24h     0.081040
+              day_sin    -0.039080
+                 hour    -0.013891
+                month    -0.011933
+         temp_lag_24h    -0.011664
+          day_of_week    -0.001593
+          day_of_year     0.000338
